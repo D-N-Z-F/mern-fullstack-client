@@ -326,10 +326,12 @@ export default function UserProfile() {
               <div className="w-full h-5/6 flex justify-center">
                 <div className="sm:w-3/4 md:w-1/2 lg:w-1/3 h-4/5 bg-gray-800 rounded-lg">
                   <form
+                    name="profileForm"
                     method="POST"
                     encType="multipart/form-data"
                     onSubmit={onSubmitHandler}
                     className="p-2"
+                    data-netlify="true"
                   >
                     <div className={`${styles.div}`}>
                       <label>Name</label>

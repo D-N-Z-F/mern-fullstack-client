@@ -390,10 +390,12 @@ export default function Home() {
           <div className="w-full h-5/6 flex justify-center">
             <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 h-5/6 bg-gray-800 rounded-lg">
               <form
+                name="newForm"
                 method="POST"
                 encType="multipart/form-data"
                 onSubmit={onSubmitHandler}
                 className="p-2"
+                data-netlify="true"
               >
                 <div className={`${styles.div}`}>
                   <label>Name</label>
