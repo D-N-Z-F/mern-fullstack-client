@@ -11,7 +11,7 @@ export const register = async ({ user, upload }: RegisterUserI) => {
   if (upload) formData.append("image", upload);
 
   const res = await axios.post(
-    `http://localhost:8000/users/register`,
+    `https://mern-fullstack-server.onrender.com/users/register`,
     formData
   );
 
@@ -19,16 +19,22 @@ export const register = async ({ user, upload }: RegisterUserI) => {
 };
 
 export const login = async (user: UserI) => {
-  const res = await axios.post(`http://localhost:8000/users/login`, user);
+  const res = await axios.post(
+    `https://mern-fullstack-server.onrender.com/users/login`,
+    user
+  );
   return res.data;
 };
 
 export const getProfile = async () => {
-  const res = await axios.get("http://localhost:8000/users/profile", {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.get(
+    "https://mern-fullstack-server.onrender.com/users/profile",
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
   return res.data;
 };
 
@@ -41,7 +47,7 @@ export const updateUser = async ({ updatedUser, upload }: UpdateUserI) => {
   if (upload) formData.append("image", upload);
 
   const res = await axios.put(
-    `http://localhost:8000/users/${updatedUser._id}`,
+    `https://mern-fullstack-server.onrender.com/users/${updatedUser._id}`,
     formData,
     {
       headers: {
@@ -54,18 +60,22 @@ export const updateUser = async ({ updatedUser, upload }: UpdateUserI) => {
 };
 
 export const verifyUser = async (id: string) => {
-  const res = await axios.patch(`http://localhost:8000/users/${id}`, null, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.patch(
+    `https://mern-fullstack-server.onrender.com/users/${id}`,
+    null,
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
 
   return res.data;
 };
 
 export const upgradeUser = async (id: string) => {
   const res = await axios.patch(
-    `http://localhost:8000/users/premium/${id}`,
+    `https://mern-fullstack-server.onrender.com/users/premium/${id}`,
     null,
     {
       headers: {
@@ -78,11 +88,14 @@ export const upgradeUser = async (id: string) => {
 };
 
 export const deleteUser = async (id: string) => {
-  const res = await axios.delete(`http://localhost:8000/users/${id}`, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.delete(
+    `https://mern-fullstack-server.onrender.com/users/${id}`,
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
 
   return res.data;
 };

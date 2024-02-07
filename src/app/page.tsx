@@ -288,7 +288,7 @@ export default function Home() {
                     className="relative w-full sm:w-1/2 md:w-1/3 h-1/3 p-2 lg:hover:transform lg:hover:scale-105 lg:hover:z-5 transition duration-100 ease-in-out cursor-pointer"
                   >
                     <img
-                      src={`http://localhost:8000/${
+                      src={`https://mern-fullstack-server.onrender.com/${
                         !song.image ? "MusicIcon.jpg" : song.image
                       }`}
                       alt={!song.image ? "SongImage" : song.image.slice(14)}
@@ -502,7 +502,7 @@ export default function Home() {
                     className="w-full h-1/3 flex hover:transform hover:scale-90 hover:z-5 transition duration-100 ease-in-out cursor-pointer rounded-md"
                   >
                     <img
-                      src={`http://localhost:8000/${
+                      src={`https://mern-fullstack-server.onrender.com/${
                         playlist.songs.length
                           ? playlist.songs[0].image
                             ? playlist.songs[0].image

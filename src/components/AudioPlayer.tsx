@@ -147,7 +147,7 @@ export default function AudioPlayer({
           />
           <audio
             ref={audioRef}
-            src={`http://localhost:8000/${song.song}`}
+            src={`https://mern-fullstack-server.onrender.com/${song.song}`}
           ></audio>
         </div>
         <div className="w-full h-1/3 flex justify-center items-center">

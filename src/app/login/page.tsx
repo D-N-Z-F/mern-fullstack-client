@@ -251,7 +251,7 @@ export default function LoginRegister() {
                     }}
                     type="icon"
                     theme="filled_black"
-                    login_uri="http://localhost:8000/login"
+                    login_uri="https://mern-fullstack-server.onrender.com/login"
                   />
                 </button>
               </div>

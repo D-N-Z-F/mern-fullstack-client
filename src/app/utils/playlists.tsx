@@ -2,20 +2,26 @@ import { PlaylistI, PlaylistNewI } from "@/interfaces&types/PlaylistI";
 import axios from "axios";
 
 export const getPlaylists = async () => {
-  const res = await axios.get("http://localhost:8000/playlists", {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.get(
+    "https://mern-fullstack-server.onrender.com/playlists",
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
   return res.data;
 };
 
 export const getPlaylist = async (id: string) => {
-  const res = await axios.get(`http://localhost:8000/playlists/${id}`, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.get(
+    `https://mern-fullstack-server.onrender.com/playlists/${id}`,
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
 
   return res.data;
 };
@@ -25,7 +31,7 @@ export const editPlaylist = async (
   updatedPlaylist: PlaylistNewI
 ) => {
   const res = await axios.put(
-    `http://localhost:8000/playlists/${id}`,
+    `https://mern-fullstack-server.onrender.com/playlists/${id}`,
     updatedPlaylist,
     {
       headers: {
@@ -38,18 +44,22 @@ export const editPlaylist = async (
 };
 
 export const addPlaylist = async (newPlaylist: PlaylistNewI) => {
-  const res = await axios.post("http://localhost:8000/playlists", newPlaylist, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.post(
+    "https://mern-fullstack-server.onrender.com/playlists",
+    newPlaylist,
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
 
   return res.data;
 };
 
 export const addToPlaylist = async (playlistId: string, songId: string) => {
   const res = await axios.put(
-    `http://localhost:8000/playlists/${playlistId}/${songId}`,
+    `https://mern-fullstack-server.onrender.com/playlists/${playlistId}/${songId}`,
     null,
     {
       headers: {
@@ -66,7 +76,7 @@ export const removeFromPlaylist = async (
   songId: string
 ) => {
   const res = await axios.patch(
-    `http://localhost:8000/playlists/${playlistId}/${songId}`,
+    `https://mern-fullstack-server.onrender.com/playlists/${playlistId}/${songId}`,
     null,
     {
       headers: {
@@ -79,11 +89,14 @@ export const removeFromPlaylist = async (
 };
 
 export const deletePlaylist = async (id: string) => {
-  const res = await axios.delete(`http://localhost:8000/playlists/${id}`, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  const res = await axios.delete(
+    `https://mern-fullstack-server.onrender.com/playlists/${id}`,
+    {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
 
   return res.data;
 };

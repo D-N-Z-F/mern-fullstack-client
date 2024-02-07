@@ -180,7 +180,7 @@ export default function Playlists() {
                     }`}
                   >
                     <img
-                      src={`http://localhost:8000/${
+                      src={`https://mern-fullstack-server.onrender.com/${
                         !playlist.songs.length
                           ? "MusicIcon.jpg"
                           : !playlist.songs[0].image

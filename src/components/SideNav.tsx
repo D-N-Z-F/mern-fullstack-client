@@ -126,7 +126,7 @@ export default function SideNav() {
               <div className="w-full h-full flex flex-wrap justify-between rounded-md hidden md:block">
                 <div className="relative h-1/3 w-full rounded-tl-md rounded-tr-md">
                   <img
-                    src={`http://localhost:8000/${user?.image}`}
+                    src={`https://mern-fullstack-server.onrender.com/${user?.image}`}
                     className="h-full w-full object-cover rounded-tl-md rounded-tr-md brightness-50"
                   />
                   <div className="absolute top-0 left-0 w-full h-full p-2 flex justify-between items-end">
@@ -168,7 +168,7 @@ export default function SideNav() {
                     ) : (
                       <>
                         <img
-                          src={`http://localhost:8000/${
+                          src={`https://mern-fullstack-server.onrender.com/${
                             !likedSong.image ? "MusicIcon.jpg" : likedSong.image
                           }`}
                           className="w-full h-full object-cover brightness-50 rounded-md"
