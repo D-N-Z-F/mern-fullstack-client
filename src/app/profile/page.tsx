@@ -24,6 +24,7 @@ import { AuthContext } from "../AuthContextProvider";
 import { verifyEmail } from "../utils/api";
 import PayPal from "@/components/Paypal";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "react-query";
 
 export default function UserProfile() {
   const { user, setUser, setToken } = useContext(AuthContext);
@@ -36,6 +37,7 @@ export default function UserProfile() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [color, setColor] = useState("");
 
+  const queryClient = useQueryClient();
   const { push } = useRouter();
 
   const styles = {
@@ -196,6 +198,7 @@ export default function UserProfile() {
         pauseOnHover: false,
       });
     } else {
+      queryClient.clear();
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       setUser(null);
@@ -349,8 +352,8 @@ export default function UserProfile() {
                       <label>Email</label>
                       <input
                         className={`${styles.inputs}`}
-                        type="text"
-                        name="username"
+                        type="email"
+                        name="email"
                         onChange={onChangeHandler}
                         value={updatedUser?.email}
                       />

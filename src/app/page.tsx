@@ -80,7 +80,6 @@ export default function Home() {
   const [isAddingToPlaylist, setIsAddingToPlaylist] = useState(false);
   const [songToAddOrRemove, setSongToAddOrRemove] = useState("");
 
-  const [isClicked, setIsClicked] = useState(false);
   const queryClient = useQueryClient();
 
   const styles = {
@@ -100,7 +99,6 @@ export default function Home() {
 
     setActiveSong(null);
     setActivePlayer(false);
-    setIsClicked(true);
 
     const songId = e.currentTarget.getAttribute("id") as string;
     const data = await getSong(songId);
@@ -311,9 +309,7 @@ export default function Home() {
                           <button
                             id={song._id}
                             onClick={triggerEdit}
-                            className={`hover:transform hover:scale-125 hover:shadow-black hover:shadow hover:bg-gray-500 hover:z-10 rounded-md transition duration-100 ease-in-out cursor-pointer pointer-events-${
-                              !isClicked ? "auto" : "none"
-                            }`}
+                            className="hover:transform hover:scale-125 hover:shadow-black hover:shadow hover:bg-gray-500 hover:z-10 rounded-md transition duration-100 ease-in-out cursor-pointer pointer-events-auto"
                           >
                             <Cog8ToothIcon className="w-6 h-6" />
                           </button>
@@ -374,7 +370,6 @@ export default function Home() {
             <XMarkIcon
               className="w-16 h-16 md:w-24 md:h-24 cursor-pointer transition duration-100 ease-in-out hover:bg-gray-900 rounded-lg hover:transform hover:scale-90"
               onClick={() => {
-                setIsClicked(false);
                 setAudioUpload(null);
                 setImageUpload(null);
                 setEditingSong(null);
@@ -508,11 +503,11 @@ export default function Home() {
                   >
                     <img
                       src={`http://localhost:8000/${
-                        !playlist.songs.length
-                          ? "MusicIcon.jpg"
-                          : !playlist.songs[0].image
-                          ? "MusicIcon.jpg"
-                          : playlist.songs[0].image
+                        playlist.songs.length
+                          ? playlist.songs[0].image
+                            ? playlist.songs[0].image
+                            : "MusicIcon.jpg"
+                          : "MusicIcon.jpg"
                       }`}
                       alt="PlaylistImage"
                       className={`w-1/3 h-full object-cover ${

@@ -49,7 +49,6 @@ export default function Playlists() {
   const [updatedPlaylist, setUpdatedPlaylist] = useState<PlaylistNewI | null>(
     null
   );
-  const [isClicked, setIsClicked] = useState(false);
   const queryClient = useQueryClient();
 
   const styles = {
@@ -69,7 +68,6 @@ export default function Playlists() {
 
     setSongs(null);
     setActivePlayer(false);
-    setIsClicked(true);
 
     const playlistId = e.currentTarget.getAttribute("id") as string;
     const data = await getPlaylist(playlistId);
@@ -124,7 +122,6 @@ export default function Playlists() {
       });
     }
 
-    setIsClicked(false);
     setUpdatedPlaylist(null);
     setEditingPlaylist(null);
     setNewPlaylist({
@@ -157,7 +154,6 @@ export default function Playlists() {
       });
     }
 
-    setIsClicked(false);
     setEditingPlaylist(null);
     setUpdatedPlaylist(null);
     setEditing(false);
@@ -198,9 +194,7 @@ export default function Playlists() {
                       <button
                         id={playlist._id}
                         onClick={triggerEdit}
-                        className={`hover:transform hover:scale-125 hover:shadow-black hover:shadow hover:bg-gray-500 hover:z-10 rounded-md transition duration-100 ease-in-out cursor-pointer pointer-events-${
-                          !isClicked ? "auto" : "none"
-                        }`}
+                        className="hover:transform hover:scale-125 hover:shadow-black hover:shadow hover:bg-gray-500 hover:z-10 rounded-md transition duration-100 ease-in-out cursor-pointer pointer-events-auto"
                       >
                         <Cog8ToothIcon className="w-6 h-6" />
                       </button>
@@ -263,7 +257,6 @@ export default function Playlists() {
             <XMarkIcon
               className="w-16 h-16 md:w-24 md:h-24 cursor-pointer transition duration-100 ease-in-out hover:bg-gray-900 rounded-lg hover:transform hover:scale-90"
               onClick={() => {
-                setIsClicked(false);
                 setEditingPlaylist(null);
                 setUpdatedPlaylist(null);
                 setNewPlaylist({

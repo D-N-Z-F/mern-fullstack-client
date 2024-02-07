@@ -55,7 +55,6 @@ export default function LikedPage() {
   const [isAddingToPlaylist, setIsAddingToPlaylist] = useState(false);
   const [songToAddOrRemove, setSongToAddOrRemove] = useState("");
 
-  const [isClicked, setIsClicked] = useState(false);
   const queryClient = useQueryClient();
 
   const styles = {
@@ -205,7 +204,7 @@ export default function LikedPage() {
         pauseOnHover: false,
       });
     } else {
-      queryClient.invalidateQueries("songs");
+      queryClient.invalidateQueries("likedSongs");
       toast.success(data.message, {
         position: "bottom-right",
         autoClose: 2000,
@@ -230,7 +229,14 @@ export default function LikedPage() {
             <div className="w-full h-full bg-gray-900 rounded-md p-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-transparent">
               <div className="w-full h-full p-2 flex flex-wrap content-start">
                 <h1 className="w-full pl-2 text-2xl font-bold">Liked Songs</h1>
-                {!Object.keys(likedData.songs) ? (
+                {!likedData.songs ? (
+                  <div className="w-full h-1/2 flex justify-center items-center">
+                    <div className="animate-bounce">
+                      <h1 className="text-2xl">Nothing To Show Yet!</h1>
+                      <h2 className="text-md">Start Liking Songs!</h2>
+                    </div>
+                  </div>
+                ) : likedData.songs.length ? (
                   likedData.songs.map((song: SongI) => (
                     <div
                       key={song._id}
@@ -268,9 +274,8 @@ export default function LikedPage() {
                             <button
                               id={song._id}
                               onClick={triggerEdit}
-                              className={`hover:transform hover:scale-125 hover:shadow-black hover:shadow hover:bg-gray-500 hover:z-10 rounded-md transition duration-100 ease-in-out cursor-pointer pointer-events-${
-                                !isClicked ? "auto" : "none"
-                              }`}
+                              className="hover:transform hover:scale-125 hover:shadow-black hover:shadow hover:bg-gray-500 hover:z-10 rounded-md transition duration-100 ease-in-out cursor-pointer pointer-events-auto
+                              "
                             >
                               <Cog8ToothIcon className="w-6 h-6" />
                             </button>
@@ -325,7 +330,6 @@ export default function LikedPage() {
             <XMarkIcon
               className="w-16 h-16 md:w-24 md:h-24 cursor-pointer transition duration-100 ease-in-out hover:bg-gray-900 rounded-lg hover:transform hover:scale-90"
               onClick={() => {
-                setIsClicked(false);
                 setAudioUpload(null);
                 setImageUpload(null);
                 setEditingSong(null);
@@ -433,6 +437,8 @@ export default function LikedPage() {
                       src={`http://localhost:8000/${
                         playlist.songs.length
                           ? playlist.songs[0].image
+                            ? playlist.songs[0].image
+                            : "MusicIcon.jpg"
                           : "MusicIcon.jpg"
                       }`}
                       alt="PlaylistImage"
