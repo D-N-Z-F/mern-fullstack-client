@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { getLiked } from "@/app/utils/likes";
 import { SongI } from "@/interfaces&types/SongI";
+import Image from "next/image";
 
 export default function SideNav() {
   const { user, token, setUser, setToken } = useContext(AuthContext);
@@ -125,8 +126,9 @@ export default function SideNav() {
             <>
               <div className="w-full h-full flex flex-wrap justify-between rounded-md hidden md:block">
                 <div className="relative h-1/3 w-full rounded-tl-md rounded-tr-md">
-                  <img
+                  <Image
                     src={`https://mern-fullstack-server.onrender.com/${user?.image}`}
+                    alt="ProfilePicture"
                     className="h-full w-full object-cover rounded-tl-md rounded-tr-md brightness-50"
                   />
                   <div className="absolute top-0 left-0 w-full h-full p-2 flex justify-between items-end">
@@ -167,10 +169,11 @@ export default function SideNav() {
                       </div>
                     ) : (
                       <>
-                        <img
+                        <Image
                           src={`https://mern-fullstack-server.onrender.com/${
                             !likedSong.image ? "MusicIcon.jpg" : likedSong.image
                           }`}
+                          alt="FavouritesImage"
                           className="w-full h-full object-cover brightness-50 rounded-md"
                         />
                         <div className="absolute top-0 left-0 w-full h-full p-2 flex flex-col justify-end text-white">

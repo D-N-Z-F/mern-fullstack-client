@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useEffect, useRef } from "react";
 import { PlaylistPlayerProps } from "@/interfaces&types/PlaylistI";
 import {

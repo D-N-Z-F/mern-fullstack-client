@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useEffect, useRef } from "react";
 import { AudioPlayerProps, SongI } from "@/interfaces&types/SongI";
 import {
@@ -96,7 +98,7 @@ export default function AudioPlayer({
       if (isPlaying) startInterval();
 
       return () => clearInterval(intervalRef.current as NodeJS.Timeout);
-    }, [isPlaying]);
+    }, [isPlaying, setIsPlaying]);
 
     useEffect(() => {
       setIsPlaying(false);

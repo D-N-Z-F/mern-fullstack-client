@@ -29,6 +29,7 @@ import { PlaylistI, PlaylistNewI } from "@/interfaces&types/PlaylistI";
 import { SongI } from "@/interfaces&types/SongI";
 import PlaylistPlayer from "@/components/PlaylistPlayer";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 export default function Playlists() {
   const { user, token, setUser, setToken } = useContext(AuthContext);
@@ -179,7 +180,7 @@ export default function Playlists() {
                         : "hover:transform hover:scale-105 hover:z-5"
                     }`}
                   >
-                    <img
+                    <Image
                       src={`https://mern-fullstack-server.onrender.com/${
                         !playlist.songs.length
                           ? "MusicIcon.jpg"

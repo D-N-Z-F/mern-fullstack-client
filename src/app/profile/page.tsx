@@ -25,6 +25,7 @@ import { verifyEmail } from "../utils/api";
 import PayPal from "@/components/Paypal";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "react-query";
+import Image from "next/image";
 
 export default function UserProfile() {
   const { user, setUser, setToken } = useContext(AuthContext);
@@ -222,14 +223,16 @@ export default function UserProfile() {
         <>
           <div className="relative w-full h-full bg-gray-900 rounded-md p-2 flex flex-col justify-between">
             <div className="absolute top-0 left-0 w-full h-1/2 flex items-center justify-end p-5">
-              <img
+              <Image
                 src={`https://mern-fullstack-server.onrender.com/${user.image}`}
+                alt="ProfilePicture"
                 className="w-32 h-32 md:w-52 md:h-52 rounded-full object-cover brightness-50 sm:mr-5 z-20 hidden sm:flex"
               />
             </div>
             <div className={`w-full h-1/4 ${color} rounded-md`}>
-              <img
+              <Image
                 src={`https://mern-fullstack-server.onrender.com/${user.image}`}
+                alt="ProfilePicture"
                 className="w-full h-full rounded-md object-cover brightness-50 block sm:hidden"
               />
             </div>
