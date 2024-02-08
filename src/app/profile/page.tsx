@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  ChangeEvent,
-  FormEvent,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import {
   BookmarkSquareIcon,
   CheckBadgeIcon,
@@ -23,7 +16,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../AuthContextProvider";
 import { verifyEmail } from "../utils/api";
 import PayPal from "@/components/Paypal";
-import { useRouter } from "next/navigation";
+import { permanentRedirect, useRouter } from "next/navigation";
 import { useQueryClient } from "react-query";
 import Image from "next/image";
 
@@ -215,7 +208,11 @@ export default function UserProfile() {
     }
   };
 
-  useEffect(() => setColor(colorRandomizer()), []);
+  useEffect(() => {
+    if (!localStorage.getItem("user") && !localStorage.getItem("token"))
+      permanentRedirect("/login");
+    setColor(colorRandomizer());
+  }, [user]);
 
   return (
     <div className="w-3/4 h-full bg-gray-800 flex flex-wrap justify-center items-center p-2 pl-0">

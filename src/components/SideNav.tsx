@@ -7,7 +7,6 @@ import {
   HomeIcon,
   QueueListIcon,
   HeartIcon,
-  ExclamationCircleIcon,
   UserCircleIcon,
   CheckCircleIcon,
   CheckBadgeIcon,
@@ -137,7 +136,17 @@ export default function SideNav() {
                       <h1 className="text-lg">{user?.name}</h1>
                     </div>
                     <div className="flex">
-                      <UserCircleIcon className={`w-6 h-6 text-neutral-400`} />
+                      <UserCircleIcon
+                        className={`w-6 h-6 ${
+                          user?.gender === "male"
+                            ? "text-blue-500"
+                            : user?.gender === "female"
+                            ? "text-pink-500"
+                            : user?.gender === "non-binary"
+                            ? "text-amber-500"
+                            : "text-white"
+                        }`}
+                      />
                       {!user?.isVerified ? null : (
                         <CheckCircleIcon className="w-6 h-6 text-emerald-400" />
                       )}

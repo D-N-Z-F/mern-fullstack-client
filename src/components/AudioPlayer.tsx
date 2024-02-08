@@ -108,12 +108,14 @@ export default function AudioPlayer({
 
     return (
       <div
-        className="absolute bottom-0 w-1/2 h-1/5 rounded-tl-md rounded-tr-md p-2 text-black"
+        className="absolute bottom-0 w-full sm:w-2/3 md:w-1/2 h-1/5 rounded-tl-md rounded-tr-md p-2 text-black"
         style={{ backgroundColor: "#fb503b" }}
       >
         <div className="w-full h-1/3 flex justify-between">
           <MusicalNoteIcon className="w-6 h-6" />
-          <h1>{`${song.song.replace(/\.\w+$/, "").slice(14)}`}</h1>
+          <h1 className="text-sm sm:text-md md:text-lg">{`${song.song
+            .replace(/\.\w+$/, "")
+            .slice(14)}`}</h1>
           <MinusCircleIcon
             className="w-6 h-6 cursor-pointer hover:text-white transition duration-100 ease-in-out"
             onClick={() => setActivePlayer(false)}

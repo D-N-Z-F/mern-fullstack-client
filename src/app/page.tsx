@@ -248,13 +248,12 @@ export default function Home() {
       const token = localStorage.getItem("token");
       if (token) {
         const decoded = jwtDecode(token);
-
         const expirationTime = decoded.exp as number;
         const currentTime = Math.floor(Date.now() / 1000);
 
         return expirationTime < currentTime;
       }
-      return null;
+      return false;
     };
 
     const storedUser = localStorage.getItem("user");

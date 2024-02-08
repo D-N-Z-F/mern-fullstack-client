@@ -5,6 +5,7 @@ import {
   FormEvent,
   MouseEventHandler,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { AuthContext } from "../AuthContextProvider";
@@ -32,6 +33,7 @@ import AudioPlayer from "@/components/AudioPlayer";
 import { PlaylistI } from "@/interfaces&types/PlaylistI";
 import CheckCircle from "@/components/CheckCircle";
 import Image from "next/image";
+import { permanentRedirect } from "next/navigation";
 
 export default function LikedPage() {
   const { user } = useContext(AuthContext);
@@ -221,6 +223,11 @@ export default function LikedPage() {
     setEditingSong(null);
     setIsEditing(false);
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("user") && !localStorage.getItem("token"))
+      permanentRedirect("/login");
+  }, [user]);
 
   return (
     <>

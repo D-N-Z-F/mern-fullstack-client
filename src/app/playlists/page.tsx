@@ -5,6 +5,7 @@ import {
   FormEvent,
   MouseEventHandler,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { AuthContext } from "../AuthContextProvider";
@@ -30,6 +31,7 @@ import { SongI } from "@/interfaces&types/SongI";
 import PlaylistPlayer from "@/components/PlaylistPlayer";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { permanentRedirect } from "next/navigation";
 
 export default function Playlists() {
   const { user, token, setUser, setToken } = useContext(AuthContext);
@@ -159,6 +161,11 @@ export default function Playlists() {
     setUpdatedPlaylist(null);
     setEditing(false);
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("user") && !localStorage.getItem("token"))
+      permanentRedirect("/login");
+  }, [user]);
 
   return (
     <>
